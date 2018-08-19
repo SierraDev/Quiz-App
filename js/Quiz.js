@@ -23,3 +23,4 @@ Quiz.prototype.reset = function () {
     this.score = 0;
     this.currentIndex = 0;
 }
+
