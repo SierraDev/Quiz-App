@@ -12,43 +12,42 @@ const App = (() => {
     const nextButtonEl = document.querySelector(".next");
     const restartButtonEl = document.querySelector(".restart");
 
-    const q1 = new Question(
-        "What's the name of Blackbeard's ship?", ["Queen Anne's Revenge", "The Black Banana Boat", "Pleasure Island", "Down in Kokomo"],
-        0
-    );
-    const q2 = new Question(
-        "Why is your mother so disappointed?", ["You own too many fedoras", "You haven't left your room in months", "You smell like Cheetos and sadness", "You exist"],
-        0, 1, 2, 3
-    );
-    const q3 = new Question(
-        "What is black, blue, and red all over?", ["A United passenger", "That really bad bruise from your last field hockey game", "The cookie monster is dead", "1960s Batman and Robin"],
-        3
-    );
-    const q4 = new Question(
-        "What cries and is always broke?", ["College student", "You, because the ice cream machine is broken", "A leaky waterline", "Your good-for-nothing roommate who's always hitting you up for weed and food"],
-        1
-    );
-    const q5 = new Question(
-        "What was the last thing your dad said to you?", ["Going out for a pack of cigarettes", "Going to the store", "Going on a beer run", "Nothing, because he snuck out."],
-        0, 1, 2, 3
-    );
+      const q1 = new Question(
+          "What's the name of Blackbeard's ship?", ["Queen Anne's Revenge", "The Black Banana Boat", "Pleasure Island", "Down in Kokomo"],
+          0
+      );
+      const q2 = new Question(
+          "Why is your mother so disappointed?", ["You own too many fedoras", "You haven't left your room in months", "You smell like Cheetos and sadness", "You exist"],
+          0, 1, 2, 3
+      );
+      const q3 = new Question(
+          "What is black, blue, and red all over?", ["A United passenger", "That really bad bruise from your last field hockey game", "The cookie monster is dead", "1960s Batman and Robin"],
+          3
+      );
+      const q4 = new Question(
+          "What cries and is always broke?", ["College student", "You, because the ice cream machine is broken", "A leaky waterline", "Your good-for-nothing roommate who's always hitting you up for weed and food"],
+          1
+      );
+      const q5 = new Question(
+          "What was the last thing your dad said to you?", ["Going out for a pack of cigarettes", "Going to the store", "Going on a beer run", "Nothing, because he snuck out."],
+          0, 1, 2, 3
+      );
 
-    const quiz = new Quiz([q1, q2, q3, q4, q5]);
+      const quiz = new Quiz([q1, q2, q3, q4, q5]);
 
-    const listeners =_=>{
-        nextButtonEl.addEventListener("click", function(){
+    const listeners = _ => {
+        nextButtonEl.addEventListener("click", function () {
             const selectedRadioElem = document.querySelector('input[name="choice"]:checked');
-            if(selectedRadioElem) {
-                const key = Number(selectedRadioElem.getAttribute("data-order"))
+            if (selectedRadioElem) {
+                const key = Number(selectedRadioElem.getAttribute("data-order"));
                 quiz.guess(key);
                 renderAll();
             }
         })
 
-        restartButtonEl.addEventListener("click", function(){
-            //1. reset the quiz
+        restartButtonEl.addEventListener("click", function () {
+            // 1. reset the quiz
             quiz.reset();
-            setValue(taglineEl, `Trying again? Pff.`)
             // 2. renderAll
             renderAll();
             // 3. restore the next button
@@ -110,10 +109,10 @@ const App = (() => {
         launch(0, currentWidth);
     }
 
-    const renderEndScreen =_=>{
-        setValue(quizQuestionEl, `High-five.`);
-        setValue(taglineEl, `The end. Did you want a cookie?`);
-        setValue(trackerEl, `Oh, look here's your score: ${getPercentage(quiz.score, quiz.questions.length)}%`);
+    const renderEndScreen = _ => {
+        setValue(quizQuestionEl, `Great Job!`);
+        setValue(taglineEl, `Complete!`);
+        setValue(trackerEl, `Your score: ${getPercentage(quiz.score, quiz.questions.length)}%`);
         nextButtonEl.style.opacity = 0;
         renderProgress();
     }
