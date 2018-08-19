@@ -48,7 +48,7 @@ const App = (() => {
         restartButtonEl.addEventListener("click", function () {
             // 1. reset the quiz
             quiz.reset();
-            setValue(taglineEl, 'Seriously, this is pointless.')
+            setValue(taglineEl, 'Seriously, this is pointless.');
             // 2. renderAll
             renderAll();
             // 3. restore the next button
